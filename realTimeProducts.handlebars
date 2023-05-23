@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Real-Time Products</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    socket.on('products', (products) => {
+      // Actualizar la lista de productos en la vista
+      const productList = document.getElementById('product-list');
+      productList.innerHTML = '';
+
+      products.forEach((product) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = product.title;
+        productList.appendChild(listItem);
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Real-Time List of Products</h1>
+  <ul id="product-list"></ul>
+</body>
+</html>
